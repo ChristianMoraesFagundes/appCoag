@@ -10,6 +10,13 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   @override
+  bool _check = false;
+  void funcao(bool valor) {
+    setState() {
+      _check = valor;
+    }
+  }
+
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
@@ -20,7 +27,7 @@ class _HomePageState extends State<HomePage> {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            _cardSintomas(),
+            _cardSintomas(funcao, _check),
             SizedBox(
               height: 30.0,
             ),
@@ -44,7 +51,7 @@ class _HomePageState extends State<HomePage> {
   }
 }
 
-Widget _cardSintomas() {
+Widget _cardSintomas(Function funcao, bool _check) {
   return Card(
     margin: EdgeInsets.only(left: 20.0, right: 20.0, top: 20.0),
     elevation: 10.0,
@@ -56,8 +63,10 @@ Widget _cardSintomas() {
               Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
             Text('Febre'),
             Switch(
-              value: false,
-              onChanged: (valor) {},
+              value: _check,
+              onChanged: (valor) {
+                funcao(valor);
+              },
             ),
           ]),
         ),
