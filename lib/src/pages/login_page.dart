@@ -1,5 +1,6 @@
 import 'dart:ui';
 
+import 'package:app_covid_2/src/pages/home_page.dart';
 import 'package:flutter/material.dart';
 
 class LoginPage extends StatefulWidget {
@@ -122,7 +123,13 @@ class _LoginPageState extends State<LoginPage> {
           style: TextStyle(color: Colors.black, fontSize: 15.0),
         ),
         style: flatButtonStyle,
-        onPressed: () {},
+        onPressed: () {
+          final route = MaterialPageRoute(builder: (context) {
+            return HomePage();
+          });
+
+          Navigator.pushReplacement(context, route);
+        },
       ),
     );
   }
