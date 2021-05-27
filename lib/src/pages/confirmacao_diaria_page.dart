@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 
+//imports de paginas
+import 'package:app_covid_2/src/widgets/bottomNavigationBar.dart';
+
 class ConfirmacaoDiariaPage extends StatefulWidget {
   @override
   _ConfirmacaoDiariaPageState createState() => _ConfirmacaoDiariaPageState();
@@ -9,14 +12,16 @@ class _ConfirmacaoDiariaPageState extends State<ConfirmacaoDiariaPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: Text('Confirmação diária'),
-          centerTitle: true,
-          backgroundColor: Color(0xFF8199fa),
-        ),
-        body: const Center(
-          child: MyStatelessWidget(),
-        ));
+      appBar: AppBar(
+        title: Text('Confirmação diária'),
+        centerTitle: true,
+        backgroundColor: Color(0xFF8199fa),
+      ),
+      body: const Center(
+        child: MyStatelessWidget(),
+      ),
+      bottomNavigationBar: BottonNavBar(),
+    );
   }
 }
 
