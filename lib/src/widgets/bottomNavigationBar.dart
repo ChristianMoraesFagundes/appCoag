@@ -6,6 +6,8 @@ class BottonNavBar extends StatelessWidget {
     return BottomNavigationBar(
       currentIndex: 0,
       backgroundColor: Color(0xFFf4511e),
+      selectedLabelStyle: TextStyle(color: Colors.white),
+      unselectedLabelStyle: TextStyle(color: Colors.white),
       items: <BottomNavigationBarItem>[
         BottomNavigationBarItem(
           icon: Icon(
@@ -13,7 +15,7 @@ class BottonNavBar extends StatelessWidget {
             color: Colors.white,
           ),
           label: 'Diária',
-          backgroundColor: Color(0xFFf4511e),
+          //backgroundColor: Color(0xFFf4511e),
         ),
         BottomNavigationBarItem(
           icon: Icon(
@@ -21,7 +23,7 @@ class BottonNavBar extends StatelessWidget {
             color: Colors.white,
           ),
           label: 'Formulario',
-          backgroundColor: Color(0xFFf4511e),
+          //backgroundColor: Color(0xFFf4511e),
         ),
         BottomNavigationBarItem(
           icon: Icon(
@@ -29,7 +31,7 @@ class BottonNavBar extends StatelessWidget {
             color: Colors.white,
           ),
           label: 'Suspeitos',
-          backgroundColor: Color(0xFFf4511e),
+          //backgroundColor: Color(0xFFf4511e),
         ),
       ],
     );

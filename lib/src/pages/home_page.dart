@@ -1,3 +1,4 @@
+import 'package:app_covid_2/src/pages/suspeitos_page.dart';
 import 'package:flutter/material.dart';
 
 //imports de outras classes
@@ -10,13 +11,13 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   @override
-  bool _check = false;
-  void funcao(bool valor) {
-    setState() {
-      _check = valor;
-    }
-  }
-
+  final ButtonStyle flatButtonStyle = TextButton.styleFrom(
+    minimumSize: Size(88, 36),
+    padding: EdgeInsets.symmetric(horizontal: 16.0),
+    shape: const RoundedRectangleBorder(
+      borderRadius: BorderRadius.all(Radius.circular(2.0)),
+    ),
+  );
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
@@ -27,7 +28,7 @@ class _HomePageState extends State<HomePage> {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            _cardSintomas(funcao, _check),
+            _cardSintomas(),
             SizedBox(
               height: 30.0,
             ),
@@ -43,6 +44,10 @@ class _HomePageState extends State<HomePage> {
             SizedBox(
               height: 30.0,
             ),
+            _botao(flatButtonStyle, context),
+            SizedBox(
+              height: 30.0,
+            ),
           ],
         ),
       ),
@@ -51,7 +56,7 @@ class _HomePageState extends State<HomePage> {
   }
 }
 
-Widget _cardSintomas(Function funcao, bool _check) {
+Widget _cardSintomas() {
   return Card(
     margin: EdgeInsets.only(left: 20.0, right: 20.0, top: 20.0),
     elevation: 10.0,
@@ -63,10 +68,9 @@ Widget _cardSintomas(Function funcao, bool _check) {
               Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
             Text('Febre'),
             Switch(
-              value: _check,
-              onChanged: (valor) {
-                funcao(valor);
-              },
+              activeColor: Color(0xFFf4511e),
+              value: false,
+              onChanged: (valor) {},
             ),
           ]),
         ),
@@ -76,6 +80,7 @@ Widget _cardSintomas(Function funcao, bool _check) {
               Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
             Text('Tosse'),
             Switch(
+              activeColor: Color(0xFFf4511e),
               value: false,
               onChanged: (valor) {},
             ),
@@ -87,6 +92,7 @@ Widget _cardSintomas(Function funcao, bool _check) {
               Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
             Text('Indisposição física'),
             Switch(
+              activeColor: Color(0xFFf4511e),
               value: false,
               onChanged: (valor) {},
             ),
@@ -98,6 +104,7 @@ Widget _cardSintomas(Function funcao, bool _check) {
               Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
             Text('Diarreia'),
             Switch(
+              activeColor: Color(0xFFf4511e),
               value: false,
               onChanged: (valor) {},
             ),
@@ -109,6 +116,7 @@ Widget _cardSintomas(Function funcao, bool _check) {
               Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
             Text('Coriza'),
             Switch(
+              activeColor: Color(0xFFf4511e),
               value: false,
               onChanged: (valor) {},
             ),
@@ -120,6 +128,7 @@ Widget _cardSintomas(Function funcao, bool _check) {
               Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
             Text('Dificuldade respiratória'),
             Switch(
+              activeColor: Color(0xFFf4511e),
               value: false,
               onChanged: (valor) {},
             ),
@@ -131,6 +140,7 @@ Widget _cardSintomas(Function funcao, bool _check) {
               Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
             Text('Perda de olfato e/ou paladar'),
             Switch(
+              activeColor: Color(0xFFf4511e),
               value: false,
               onChanged: (valor) {},
             ),
@@ -163,11 +173,19 @@ Widget _cardTipo2() {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
                 Row(children: [
-                  Checkbox(value: true, onChanged: (valor) {}),
+                  Checkbox(
+                    value: true,
+                    onChanged: (valor) {},
+                    activeColor: Color(0xFFf4511e),
+                  ),
                   Text('Sim'),
                 ]),
                 Row(children: [
-                  Checkbox(value: true, onChanged: (valor) {}),
+                  Checkbox(
+                    value: true,
+                    onChanged: (valor) {},
+                    activeColor: Color(0xFFf4511e),
+                  ),
                   Text('Não'),
                 ]),
               ]),
@@ -199,11 +217,19 @@ Widget _cardTipo3() {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
                 Row(children: [
-                  Checkbox(value: true, onChanged: (valor) {}),
+                  Checkbox(
+                    value: true,
+                    onChanged: (valor) {},
+                    activeColor: Color(0xFFf4511e),
+                  ),
                   Text('Sim'),
                 ]),
                 Row(children: [
-                  Checkbox(value: true, onChanged: (valor) {}),
+                  Checkbox(
+                    value: true,
+                    onChanged: (valor) {},
+                    activeColor: Color(0xFFf4511e),
+                  ),
                   Text('Não'),
                 ]),
               ]),
@@ -235,12 +261,45 @@ Widget _cardTipo4() {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
                 Row(children: [
-                  Checkbox(value: true, onChanged: (valor) {}),
+                  Checkbox(
+                    value: true,
+                    onChanged: (valor) {},
+                    activeColor: Color(0xFFf4511e),
+                  ),
                   Text('Ciente'),
                 ]),
               ]),
         ),
       ],
+    ),
+  );
+}
+
+Widget _botao(ButtonStyle flatButtonStyle, BuildContext context) {
+  return Container(
+    width: 200.0,
+    decoration: BoxDecoration(
+      borderRadius: BorderRadius.only(
+          bottomLeft: Radius.circular(50.0),
+          topLeft: Radius.circular(50.0),
+          bottomRight: Radius.circular(50.0),
+          topRight: Radius.circular(50.0)),
+      color: Color(0xFF81d4fa),
+    ),
+    child: TextButton(
+      child: Text(
+        'Salvar',
+        style: TextStyle(color: Colors.black, fontSize: 15.0),
+      ),
+      style: flatButtonStyle,
+      onPressed: () {
+        //temporario
+        final route = MaterialPageRoute(builder: (context) {
+          return SuspeitosPage();
+        });
+
+        Navigator.push(context, route);
+      },
     ),
   );
 }

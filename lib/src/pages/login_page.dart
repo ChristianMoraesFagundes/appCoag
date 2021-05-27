@@ -100,13 +100,6 @@ class _LoginPageState extends State<LoginPage> {
     );
   }
 
-  Widget _criarPessoa() {
-    return ListTile(
-      title: Text('Login:  $_login'),
-      subtitle: Text('Senha: $_senha'),
-    );
-  }
-
   Widget _botao() {
     return Container(
       decoration: BoxDecoration(
@@ -115,7 +108,7 @@ class _LoginPageState extends State<LoginPage> {
             topLeft: Radius.circular(50.0),
             bottomRight: Radius.circular(50.0),
             topRight: Radius.circular(50.0)),
-        color: Color(0xFF03DAC5),
+        color: Color(0xFF81d4fa),
       ),
       child: TextButton(
         child: Text(
