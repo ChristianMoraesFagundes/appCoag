@@ -1,7 +1,8 @@
-import 'package:app_covid_2/src/pages/suspeitos_page.dart';
 import 'package:flutter/material.dart';
 
 //imports de outras classes
+import 'package:app_covid_2/src/pages/confirmacao_diaria_page.dart';
+import 'package:app_covid_2/src/pages/suspeitos_page.dart';
 import 'package:app_covid_2/src/widgets/bottomNavigationBar.dart';
 
 class HomePage extends StatefulWidget {
@@ -293,9 +294,9 @@ Widget _botao(ButtonStyle flatButtonStyle, BuildContext context) {
       ),
       style: flatButtonStyle,
       onPressed: () {
-        //temporario
+        //rota temporaria
         final route = MaterialPageRoute(builder: (context) {
-          return SuspeitosPage();
+          return ConfirmacaoDiariaPage();
         });
 
         Navigator.push(context, route);
