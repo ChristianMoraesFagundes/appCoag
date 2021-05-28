@@ -30,27 +30,43 @@ class MyStatelessWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return TextButton(
-      onPressed: () => showDialog<String>(
-        context: context,
-        barrierDismissible: false,
-        builder: (BuildContext context) => AlertDialog(
-          title: const Text('Confirmação diária'),
-          content: const Text(
-              'Houve alguma mudança na sua situação clínica desde o preenchimento do formulário?'),
-          actions: <Widget>[
-            TextButton(
-              onPressed: () => Navigator.pop(context, 'Não'),
-              child: const Text('Não'),
-            ),
-            TextButton(
-              onPressed: () => Navigator.pop(context, 'Sim'),
-              child: const Text('Sim'),
-            ),
-          ],
+    return Container(
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.only(
+              bottomLeft: Radius.circular(50.0),
+              topLeft: Radius.circular(50.0),
+              bottomRight: Radius.circular(50.0),
+              topRight: Radius.circular(50.0)),
+          color: Color(0xFF8199fa),
         ),
-      ),
-      child: const Text('Show Dialog'),
-    );
+        //color: Color(0xFF8199fa),
+        child: TextButton(
+          onPressed: () => showDialog<String>(
+            context: context,
+            barrierDismissible: false,
+            builder: (BuildContext context) => AlertDialog(
+              elevation: 20.0,
+              title: const Text('Confirmação diária'),
+              content: const Text(
+                  'Houve alguma mudança na sua situação clínica desde o preenchimento do formulário?'),
+              actions: <Widget>[
+                TextButton(
+                  onPressed: () => Navigator.pop(context, 'Não'),
+                  child: const Text('Não'),
+                ),
+                TextButton(
+                  onPressed: () => Navigator.pop(context, 'Sim'),
+                  child: const Text('Sim'),
+                ),
+              ],
+            ),
+          ),
+          child: const Text(
+            'Confirmar estado clínico',
+            style: TextStyle(
+              color: Colors.white,
+            ),
+          ),
+        ));
   }
 }

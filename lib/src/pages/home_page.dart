@@ -13,6 +13,7 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   @override
   final ButtonStyle flatButtonStyle = TextButton.styleFrom(
+    elevation: 20.0,
     minimumSize: Size(88, 36),
     padding: EdgeInsets.symmetric(horizontal: 16.0),
     shape: const RoundedRectangleBorder(
