@@ -1,7 +1,10 @@
+import 'package:app_covid_2/app/widgets/bottomNavigationBar.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+
+import 'home.controller.dart';
 
 //imports de outras classes
-import 'package:app_covid_2/src/widgets/bottomNavigationBar.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -45,19 +48,26 @@ class _HomePageState extends State<HomePage> {
 }
 
 Widget _cardSintomas() {
+  final c = Get.put(MyController());
+
   return Card(
     margin: EdgeInsets.only(left: 20.0, right: 20.0, top: 20.0),
     elevation: 10.0,
     child: Column(
+      crossAxisAlignment: CrossAxisAlignment.center,
       children: <Widget>[
         Container(
           padding: EdgeInsets.only(right: 20.0, left: 20.0),
           child:
               Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
             Text('Febre'),
-            Switch(
-              value: false,
-              onChanged: (valor) {},
+            Obx(
+              () => Switch(
+                  value: c.mark,
+                  onChanged: (valor) {
+                    c.setMark(valor);
+                    print(c.mark);
+                  }),
             ),
           ]),
         ),

@@ -1,6 +1,6 @@
 import 'dart:ui';
 
-import 'package:app_covid_2/src/pages/home_page.dart';
+import 'package:app_covid_2/app/modules/home/home_page.dart';
 import 'package:flutter/material.dart';
 
 class LoginPage extends StatefulWidget {
@@ -21,35 +21,37 @@ class _LoginPageState extends State<LoginPage> {
       backgroundColor: Color(0xFFf4511e),
       //appBar: AppBar(),
       body: SafeArea(
-        child: ListView(
-          padding: EdgeInsets.symmetric(horizontal: 10.0, vertical: 20.0),
-          children: <Widget>[
-            CircleAvatar(
-                radius: 30.0,
-                child: ClipOval(
-                  child: Image.asset(urlImage),
-                )),
-            SizedBox(
-              height: 30.0,
-            ),
-            Text(
-              'TRIAGEM DE CONDIÇÕES CLÍNICO-EPIDEMIOLÓGICAS DO TRABALHADOR',
-              textAlign: TextAlign.center,
-              style: TextStyle(fontSize: 20.0),
-            ),
-            Divider(),
-            _inputEmail(),
-            Divider(),
-            _inputSenha(() {
-              setState(() {
-                _visivel = !_visivel;
-              });
-              print('funcionou');
-            }, _visivel),
-            Divider(),
-            //_criarPessoa(),
-            _botao(),
-          ],
+        child: Center(
+          child: ListView(
+            padding: EdgeInsets.symmetric(horizontal: 10.0, vertical: 20.0),
+            children: <Widget>[
+              CircleAvatar(
+                  radius: 30.0,
+                  child: ClipOval(
+                    child: Image.asset(urlImage),
+                  )),
+              SizedBox(
+                height: 30.0,
+              ),
+              Text(
+                'TRIAGEM DE CONDIÇÕES CLÍNICO-EPIDEMIOLÓGICAS DO TRABALHADOR',
+                textAlign: TextAlign.center,
+                style: TextStyle(fontSize: 20.0),
+              ),
+              Divider(),
+              _inputEmail(),
+              Divider(),
+              _inputSenha(() {
+                setState(() {
+                  _visivel = !_visivel;
+                });
+                print('funcionou');
+              }, _visivel),
+              Divider(),
+              //_criarPessoa(),
+              _botao(),
+            ],
+          ),
         ),
       ),
     );

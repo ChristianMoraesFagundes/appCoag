@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 //Pages
-import 'package:app_covid_2/src/pages/login_page.dart';
+import 'package:app_covid_2/app/modules/login/login_page.dart';
 //import 'package:app_covid/src/pages/home_page.dart';
 
 class MyApp extends StatelessWidget {
