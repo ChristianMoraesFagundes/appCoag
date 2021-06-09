@@ -9,6 +9,8 @@ class LoginController extends GetxController {
   TextEditingController email = TextEditingController();
   TextEditingController password = TextEditingController();
 
+  bool passwordVisivel = true;
+
   void setEmail(String newvalue) {
     email.text = newvalue;
   }
@@ -17,8 +19,17 @@ class LoginController extends GetxController {
     password.text = newvalue;
   }
 
-  final _obj = ''.obs;
+  void changePasswordVisivel() {
+    passwordVisivel = !passwordVisivel;
+    update(['password']);
+  }
 
-  set obj(value) => this._obj.value = value;
-  get obj => this._obj.value;
+  bool get valido =>
+      password.text.length > 6 &&
+      RegExp(r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
+          .hasMatch(email.text);
+
+  void submit() {}
+
+  RxBool liberado = true.obs;
 }

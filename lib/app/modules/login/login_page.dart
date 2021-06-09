@@ -1,4 +1,4 @@
-import 'package:app_covid_2/app/modules/home/home_page.dart';
+import 'package:app_covid_2/app/modules/login/login_controller.dart';
 import 'package:app_covid_2/app/routes/app_pages.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -9,8 +9,6 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
-  String _login = '';
-  String _senha = '';
   bool _visivel = true;
 
   @override
@@ -22,35 +20,35 @@ class _LoginPageState extends State<LoginPage> {
       //appBar: AppBar(),
       body: SafeArea(
         child: Center(
-          child: ListView(
-            padding: EdgeInsets.symmetric(horizontal: 10.0, vertical: 20.0),
-            children: <Widget>[
-              CircleAvatar(
-                  radius: 30.0,
-                  child: ClipOval(
-                    child: Image.asset(urlImage),
-                  )),
-              SizedBox(
-                height: 30.0,
-              ),
-              Text(
-                'TRIAGEM DE CONDIÇÕES CLÍNICO-EPIDEMIOLÓGICAS DO TRABALHADOR',
-                textAlign: TextAlign.center,
-                style: TextStyle(fontSize: 20.0),
-              ),
-              Divider(),
-              _inputEmail(),
-              Divider(),
-              _inputSenha(() {
-                setState(() {
-                  _visivel = !_visivel;
-                });
-                print('funcionou');
-              }, _visivel),
-              Divider(),
-              //_criarPessoa(),
-              _botao(),
-            ],
+          child: GetBuilder(
+            init: Get.find<LoginController>(),
+            builder: (_) {
+              return ListView(
+                padding: EdgeInsets.symmetric(horizontal: 10.0, vertical: 20.0),
+                children: <Widget>[
+                  CircleAvatar(
+                      radius: 30.0,
+                      child: ClipOval(
+                        child: Image.asset(urlImage),
+                      )),
+                  SizedBox(
+                    height: 30.0,
+                  ),
+                  Text(
+                    'TRIAGEM DE CONDIÇÕES CLÍNICO-EPIDEMIOLÓGICAS DO TRABALHADOR',
+                    textAlign: TextAlign.center,
+                    style: TextStyle(fontSize: 20.0),
+                  ),
+                  Divider(),
+                  _inputEmail(),
+                  Divider(),
+                  _inputSenha(),
+                  Divider(),
+                  //_criarPessoa(),
+                  _botao(),
+                ],
+              );
+            },
           ),
         ),
       ),
@@ -58,82 +56,88 @@ class _LoginPageState extends State<LoginPage> {
   }
 
   Widget _inputEmail() {
-    return TextField(
-      decoration: InputDecoration(
-        hintText: 'exemplo@educadventista.org',
-        hintStyle: TextStyle(color: Colors.black),
-        labelText: 'Login',
-        labelStyle: TextStyle(color: Colors.black),
-        fillColor: Colors.white,
-        filled: true,
-      ),
-      onChanged: (valor) {
-        setState(() {
-          _login = valor;
-        });
+    return GetBuilder<LoginController>(
+      builder: (_) {
+        return TextFormField(
+          decoration: InputDecoration(
+            hintText: 'exemplo@educadventista.org',
+            hintStyle: TextStyle(color: Colors.black),
+            labelText: 'Login',
+            labelStyle: TextStyle(color: Colors.black),
+            fillColor: Colors.white,
+            filled: true,
+          ),
+          onChanged: (valor) {
+            _.setEmail(valor);
+          },
+        );
       },
     );
   }
 
-  Widget _inputSenha(Function funcao, bool _visivel) {
-    return TextField(
-      obscureText: _visivel,
-      decoration: InputDecoration(
-        labelText: 'Senha',
-        labelStyle: TextStyle(color: Colors.black),
-        suffixIcon: _botao_senha(funcao, _visivel),
-        fillColor: Colors.white,
-        filled: true,
-      ),
-      onChanged: (valor) {
-        setState(() {
-          _senha = valor;
-        });
+  Widget _inputSenha() {
+    return GetBuilder<LoginController>(
+      id: 'password',
+      builder: (_) {
+        return TextFormField(
+          obscureText: _.passwordVisivel,
+          decoration: InputDecoration(
+            labelText: 'Senha',
+            labelStyle: TextStyle(color: Colors.black),
+            suffixIcon: _botaoSenha(),
+            fillColor: Colors.white,
+            filled: true,
+          ),
+          onChanged: _.setPassword,
+        );
       },
     );
   }
 
-  Widget _botao_senha(Function funcao, bool _visivel) {
-    return GestureDetector(
-      child: Icon(Icons.remove_red_eye),
-      onTap: () {
-        funcao();
+  Widget _botaoSenha() {
+    return GetBuilder<LoginController>(
+      builder: (_) {
+        return GestureDetector(
+          child: Icon(Icons.remove_red_eye),
+          onTap: _.changePasswordVisivel,
+        );
       },
-    );
-  }
-
-  Widget _criarPessoa() {
-    return ListTile(
-      title: Text('Login:  $_login'),
-      subtitle: Text('Senha: $_senha'),
     );
   }
 
   Widget _botao() {
-    return Container(
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.only(
-            bottomLeft: Radius.circular(50.0),
-            topLeft: Radius.circular(50.0),
-            bottomRight: Radius.circular(50.0),
-            topRight: Radius.circular(50.0)),
-        color: Color(0xFF03DAC5),
-      ),
-      child: TextButton(
-        child: Text(
-          'ACESSAR',
-          style: TextStyle(color: Colors.black, fontSize: 15.0),
-        ),
-        style: flatButtonStyle,
-        onPressed: () {
-          // final route = MaterialPageRoute(builder: (context) {
-          //   return HomePage();
-          // });
-
-          // Navigator.pushReplacement(context, route);
-          Get.off(Routes.HOME);
-        },
-      ),
+    return GetBuilder<LoginController>(
+      builder: (_) {
+        return Container(
+          padding: EdgeInsets.all(10),
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.only(
+                bottomLeft: Radius.circular(50.0),
+                topLeft: Radius.circular(50.0),
+                bottomRight: Radius.circular(50.0),
+                topRight: Radius.circular(50.0)),
+            color: Color(0xFF03DAC5),
+          ),
+          child: TextButton(
+            child: Text(
+              'ACESSAR',
+              style: TextStyle(
+                color: Colors.black,
+                fontSize: 15.0,
+              ),
+            ),
+            style: flatButtonStyle,
+            onPressed: () {
+              if (_.valido) {
+                Get.offNamed(Routes.HOME);
+              } else {
+                Get.snackbar("Ops.", "Dados inválidos",
+                    backgroundColor: Colors.red[200]);
+              }
+            },
+          ),
+        );
+      },
     );
   }
 

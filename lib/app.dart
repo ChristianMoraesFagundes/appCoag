@@ -1,3 +1,4 @@
+import 'package:app_covid_2/app/modules/login/login_binding.dart';
 import 'package:app_covid_2/app/routes/app_pages.dart';
 import 'package:flutter/material.dart';
 
@@ -14,6 +15,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData.light(),
       initialRoute: Routes.LOGIN,
       getPages: AppPages.pages,
+      initialBinding: LoginBinding(),
       home: Center(
         child: LoginPage(),
       ),
