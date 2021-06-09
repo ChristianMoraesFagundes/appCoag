@@ -1,7 +1,7 @@
-import 'dart:ui';
-
 import 'package:app_covid_2/app/modules/home/home_page.dart';
+import 'package:app_covid_2/app/routes/app_pages.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class LoginPage extends StatefulWidget {
   @override
@@ -126,11 +126,12 @@ class _LoginPageState extends State<LoginPage> {
         ),
         style: flatButtonStyle,
         onPressed: () {
-          final route = MaterialPageRoute(builder: (context) {
-            return HomePage();
-          });
+          // final route = MaterialPageRoute(builder: (context) {
+          //   return HomePage();
+          // });
 
-          Navigator.pushReplacement(context, route);
+          // Navigator.pushReplacement(context, route);
+          Get.off(Routes.HOME);
         },
       ),
     );
