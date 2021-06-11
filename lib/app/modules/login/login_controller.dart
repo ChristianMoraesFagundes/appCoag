@@ -29,7 +29,9 @@ class LoginController extends GetxController {
       RegExp(r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
           .hasMatch(email.text);
 
-  void submit() {}
+  void submit() {
+    repository.loginComEmail(email.text, password.text);
+  }
 
   RxBool liberado = true.obs;
 }

@@ -1,5 +1,5 @@
 import 'package:app_covid_2/app/modules/login/login_controller.dart';
-import 'package:app_covid_2/app/routes/app_pages.dart';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -9,8 +9,6 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
-  bool _visivel = true;
-
   @override
   Widget build(BuildContext context) {
     final urlImage = 'assets/imagens/logo_inovarTI.png';
@@ -129,7 +127,7 @@ class _LoginPageState extends State<LoginPage> {
             style: flatButtonStyle,
             onPressed: () {
               if (_.valido) {
-                Get.offNamed(Routes.HOME);
+                _.submit();
               } else {
                 Get.snackbar("Ops.", "Dados inválidos",
                     backgroundColor: Colors.red[200]);
